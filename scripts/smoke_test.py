@@ -1,4 +1,5 @@
 """Проверка настоящего HTTP-сервера; только стандартная библиотека Python."""
+from datetime import datetime, timedelta, timezone
 import json
 import time
 from urllib.error import URLError
@@ -18,12 +19,19 @@ def main():
         try:
             assert get_json("/health") == {"status": "ok"}
             break
-        except (URLError, TimeoutError):
+        except (URLError, TimeoutError, ConnectionError):
             if attempt == 29:
                 raise
             time.sleep(1)
     assert get_json("/")["message"] == "VPe04: GitHub Actions + Docker"
-    print("HTTP smoke test: OK")
+    before = datetime.now(timezone.utc)
+    clock = get_json("/time")
+    after = datetime.now(timezone.utc)
+    assert clock["timezone"] == "UTC", clock
+    value = datetime.fromisoformat(clock["time"])
+    assert value.utcoffset() == timedelta(0), clock
+    assert before <= value <= after, clock
+    print("HTTP smoke test: OK (/, /health, /time)")
 
 
 if __name__ == "__main__":

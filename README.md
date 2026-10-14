@@ -20,6 +20,7 @@
 
 - `GET /` — название проекта и список эндпоинтов.
 - `GET /health` — `{ "status": "ok" }`.
+- `GET /time` — текущее серверное время в ISO 8601 с часовым поясом UTC.
 - Неизвестный адрес — HTTP 404.
 
 ## Запуск через Docker
@@ -29,7 +30,7 @@ docker build -t vpe04-demo .
 docker run --rm --name vpe04-demo -p 127.0.0.1:8000:8000 vpe04-demo
 ```
 
-Приложение: <http://localhost:8000>. Проверка: <http://localhost:8000/health>.
+Приложение: <http://localhost:8000>. Проверка: <http://localhost:8000/health>. Время: <http://localhost:8000/time>.
 
 ```bash
 docker run --rm vpe04-demo python -m unittest discover -s tests -v
@@ -66,3 +67,5 @@ requirements.txt              # версии зависимостей
 tests/test_app.py             # unit-тесты API
 scripts/smoke_test.py          # проверка HTTP-сервера
 ```
+
+Эндпоинт `/time` добавлен отдельным коммитом в `develop` и оформлен через Pull Request в `main`, по упрощённой схеме GitFlow из урока.
