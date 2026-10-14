@@ -19,7 +19,7 @@ def main():
         try:
             assert get_json("/health") == {"status": "ok"}
             break
-        except (URLError, TimeoutError):
+        except (URLError, TimeoutError, ConnectionError):
             if attempt == 29:
                 raise
             time.sleep(1)
