@@ -4,7 +4,7 @@
 
 Домашнее задание урока VPe04 курса «Профессия вайб-кодер».
 Простое Flask-приложение собирается в Docker-образ и публикуется в GitHub Container Registry при push в `main`.
-**Пункт 3 — деплой на сервер через SSH-Action — исключён по условию задания.**
+**Пункт 3 — деплой на сервер через SSH-Action — не выполнялся.**
 
 ## Выполнение требований
 
@@ -12,7 +12,7 @@
 | --- | --- |
 | 1. Простой Flask/FastAPI-проект | `app.py`, Flask, Gunicorn |
 | 2. `.github/workflows/deploy.yml`, push в main, Docker и GHCR | Workflow собирает образ, проверяет API и публикует `latest` и `sha-<commit>` |
-| 3. SSH-деплой (не требуется) | SSH-Action и job для серверного деплоя отсутствуют |
+| 3. SSH-деплой | Не выполнялся |
 | 4. Проверка workflow | Результаты доступны во вкладке [Actions](https://github.com/vtaranov/zerocoder-vpe04-github-actions/actions) |
 | 5. Проект на GitHub | Этот репозиторий |
 
